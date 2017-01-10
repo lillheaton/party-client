@@ -12,7 +12,6 @@ app.use((ctx, next) => {
 });
 
 app.use(ctx => {
-	console.log("Jag er 4");
   ctx.body = 'Hello Koa';
 });
 

@@ -1,3 +1,4 @@
+const config = require('./config');
 const server = require('./server');
 
-server.listen(3000);
+server.listen(config.port);
