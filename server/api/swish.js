@@ -23,9 +23,9 @@ module.exports.createRoutes = () => {
 		ctx.body = response;
 	});
 
-	router.get('/callback', (ctx, next) => {
-		log.info("Det funkar");
-		ctx.body = "Swish hi!";
+	router.post('/callback', (ctx, next) => {
+		log.info(ctx.request.body);
+		ctx.body = "OK";
 	});
 
 	return router.routes();
