@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js",
-    "start:dev": "cross-env NODE_ENV=development babel-watch --plugins transform-async-to-generator index.js"
+    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "start:dev": "cross-env NODE_ENV=development babel-watch --plugins transform-async-to-generator index.js",
+    "build": "babel . --out-dir dist --ignore client,node_modules --plugins=transform-async-to-generator --copy-files"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
     "request-promise": "^4.1.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-watch": "^2.0.5",
     "cross-env": "^3.1.4"
