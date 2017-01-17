@@ -1,18 +1,20 @@
 const env = require('../config/env');
 const log = require('../log')('PartyClient.Router');
 const Koa = require('koa');
+const koaBodyParser = require('koa-bodyparser');
 const api = require('./api');
 
 const app = new Koa();
 
-if(env.DEVELOPMENT){
-	app.use((ctx, next) => {
-	  	const start = new Date();
+app.use(koaBodyParser());
 
-	  	return next().then(() => {
-		  	const ms = new Date() - start;
-		    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);	
-	  	});
+if(env.DEVELOPMENT){
+	app.use(async (ctx, next) => {
+	  	const start = new Date();
+	  	await next();
+
+	  	const ms = new Date() - start;
+	  	console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);	
 	});	
 }
 

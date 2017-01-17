@@ -5,19 +5,26 @@
   "main": "app.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
-    "start:dev": "cross-env NODE_ENV=development node index.js"
+    "start:dev": "cross-env NODE_ENV=development babel-watch --plugins transform-async-to-generator index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "babel": "^6.5.2",
+    "babel-core": "^6.21.0",
+    "babel-polyfill": "^6.20.0",
     "bunyan": "^1.8.5",
     "koa": "^2.0.0-alpha.7",
+    "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.0.1",
-    "mssql": "^3.3.0"
+    "mssql": "^3.3.0",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
   },
   "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-watch": "^2.0.5",
     "cross-env": "^3.1.4"
   }
 }
