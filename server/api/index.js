@@ -1,13 +1,13 @@
 const Router = require('koa-router');
 const compose = require('koa-compose');
-const transaction = require('./transaction');
+const transactionController = require('./transactionController');
 
 module.exports.createRoutes = () => {
 	var router = new Router({
 		prefix: "/api"
 	});
 
-	router.use('/transaction', transaction.createRoutes());
+	router.use('/transaction', transactionController.createRoutes());
 
 	return compose([
 		router.routes(),
