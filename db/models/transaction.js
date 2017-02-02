@@ -1,24 +1,14 @@
 const Sequelize = require('sequelize');
 const db = require('../index');
 
-const order = require('./order');
 const user = require('./user');
 const party = require('./party');
 
 module.exports = db.define('transaction', {
 	id: { 
-		type: Sequelize.UUID, 
+		type: Sequelize.INTEGER, 
 		primaryKey: true, 
-		defaultValue: Sequelize.UUIDV4 
-	},
-
-	orderId: {
-		type: Sequelize.UUID,
-		field: "order_id",
-		references: {
-			model: party,
-			key: 'id'
-		}
+		autoIncrement: true
 	},
 
 	userId: { 
@@ -41,6 +31,7 @@ module.exports = db.define('transaction', {
 
 	swishPaymentReference: {
 		type: Sequelize.STRING,
+		unique: true,		
 		field: 'swish_payment_reference'
 	},
 
@@ -49,6 +40,17 @@ module.exports = db.define('transaction', {
 		field: 'payer_alias'
 	},
 
+	name: { 
+		type: Sequelize.STRING, 
+		allowNull: false 
+	},
+
+	type: { 
+		type: Sequelize.STRING, 
+		allowNull: false 
+	},
+	
+	paymentMessage: { type: Sequelize.TEXT, field: 'payment_message' },
 	amount: Sequelize.INTEGER,
 	status: Sequelize.STRING,
 	datePaid: { type: Sequelize.DATE, field: 'date_paid' },

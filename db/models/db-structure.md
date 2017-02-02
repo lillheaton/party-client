@@ -22,18 +22,8 @@ var party_signup = {
 	party_id // ref party
 }
 
-// Order table to make the application more scalable. If there is multiple orders/payments per party
-var order = {
-	id,
-	user_id, // ref user
-	party_id, // ref party
-	name, // freetext
-	type, // what type of order is it Entrance, Boose etc (application enum)
-	payment_message // string: The message that will go on the Swish transactions.
-}
-
 var transaction = {
-	order_id, // ref order ("payeePaymentReference")
+	id
 	user_id, // ref user
 	party_id, // ref party
 	swish_payment_reference,

@@ -1,21 +1,24 @@
 const db = require('./index');
+const env = require('../config/env');
 const user = require('./models/user');
 const party = require('./models/party');
-const order = require('./models/order');
 const partySignup = require('./models/partySignup');
 const transaction = require('./models/transaction');
 
 module.exports.setup = async () => {
-	try{
-		await user.sync();
-		await party.sync();
-		await order.sync();
-		await partySignup.sync();
-		await transaction.sync();
-	}
-	catch(error){
-		console.log(error);
-	}
+	await user.sync({force: true});
+	await party.sync({force: true});
+	await partySignup.sync({force: true});
+	await transaction.sync({force: true});
+
+	// Setup a fake user for testing
+	let [devUser, userCreated] = await user.findOrCreate({where: { facebookId: 'fake_user_test_id'}, defaults: { name: 'DevUser' }});
+	let [devParty, partyCreated] = await party.findOrCreate({where: { facebookEventId: 'fake_test_id'}, defaults: { name: 'DevParty', cost: 200 }});
+
+	let [devPartySignup, partySignupCreated] = await partySignup.findOrCreate({
+		where: { userId: devUser.dataValues.id, partyId: devParty.dataValues.id }, 
+		defaults: { userId: devUser.dataValues.id, partyId: devParty.dataValues.id }
+	});
 };
 
 module.exports.checkConnection = async () => {

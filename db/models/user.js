@@ -11,6 +11,7 @@ module.exports = db.define('user', {
 	facebookId: { 
 		type: Sequelize.STRING, 
 		allowNull: false, 
+		unique: true,
 		field: "facebook_id" 
 	},
 
