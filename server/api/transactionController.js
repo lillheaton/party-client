@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const compose = require('koa-compose');
-const log = require('../../log')('PartyClient.Order');
+const log = require('../../log')('PartyClient.TransactionController');
 const { swishPayeeAlias } = require('../../config');
 const swishManager = require('../managers/swishManager');
 
@@ -64,8 +64,9 @@ module.exports.createRoutes = () => {
 		var transactionData = await transaction.findOne({ where: { id: json.payeePaymentReference } });
 		
 		await transactionData.updateAttributes({ 
+			swishPaymentReference: json.paymentReference,
 			status: json.status,
-			dataPaid: json.datePaid,
+			datePaid: json.datePaid,
 			errorCode: json.errorCode,
 			errorMessage: json.errorMessage
 		});
