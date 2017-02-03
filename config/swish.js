@@ -7,7 +7,7 @@ let cert;
 let ca;
 
 if(env.PRODUCTION) {
-	azure.createBlobService();
+	blobService = azure.createBlobService();
 }
 
 getBlobFile = (blobFileName, localFileName) => {
