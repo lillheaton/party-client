@@ -10,7 +10,7 @@ const headers = {
 module.exports = {
 
 	payment: async (body) => {
-		let { cert, ca } = swishConfig.get();
+		let { cert, ca } = await swishConfig.get();
 
 		try{
 			let response = await request({

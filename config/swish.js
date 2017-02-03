@@ -40,11 +40,13 @@ getBlobFile = (blobFileName, localFileName) => {
 module.exports.setup = async () => {
 	cert = await getBlobFile('Swish Merchant Test Certificate 1231181189.p12', env.DEVELOPMENT === true ? 'dev_swish_cert.p12' : 'swish_cert.p12');
 	ca = await getBlobFile('Test Swish Root CA v1 Test.pem', env.DEVELOPMENT === true ? 'dev_swish_ca.pem' : 'swish_ca.pem');
+
+	return { cert, ca };
 };
 
-module.exports.get = () => {
+module.exports.get = async () => {
 	if(cert == null || ca == null){
-		throw "You must call .setup() before getting the values";
+		return await setup();
 	}
 
 	return { cert, ca };
