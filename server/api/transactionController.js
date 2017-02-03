@@ -52,7 +52,7 @@ module.exports.createRoutes = () => {
 			currency: "SEK" // Swish only accepts SEK
 		});
 
-		ctx.body = { Status: "OK", Location: (response.statusCode == 201 ? response.headers.location : "") };
+		ctx.body = { StatusCode: response.statusCode, Location: (response.statusCode == 201 ? response.headers.location : "") };
 	});
 
 
