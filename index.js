@@ -9,6 +9,6 @@ const log = require('./log')('PartyClient');
 const user = require('./db/models/user');
 
 dbSetup.checkConnection()
-	.then(dbSetup.setup())
-	.then(swishConfig.setup())
-	.then(server.listen(config.port, () => log.info({port: config.port}, 'Server started')));
+	.then(() => dbSetup.setup())
+	.then(() => swishConfig.setup())
+	.then(() => server.listen(config.port, () => log.info({port: config.port}, 'Server started')));
