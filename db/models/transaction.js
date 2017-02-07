@@ -1,9 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../index');
 
-const user = require('./user');
-const party = require('./party');
-
 module.exports = db.define('transaction', {
 	id: { 
 		type: Sequelize.INTEGER, 
@@ -11,22 +8,15 @@ module.exports = db.define('transaction', {
 		autoIncrement: true
 	},
 
-	userId: { 
-		type: Sequelize.UUID,
-		field: "user_id",
-		references: { 
-			model: user,
-			key: 'id'
-		}  
+	facebookUserId: { 
+		type: Sequelize.STRING,
+		field: "facebook_user_id"
 	},
 
+	// Contentful Party model ID
 	partyId: {
-		type: Sequelize.UUID,
-		field: "party_id",
-		references: {
-			model: party,
-			key: 'id'
-		}
+		type: Sequelize.STRING,
+		field: "c_ref_party_id"
 	},
 
 	swishPaymentReference: {
@@ -35,12 +25,13 @@ module.exports = db.define('transaction', {
 		field: 'swish_payment_reference'
 	},
 
+	// Swish payer phone-number
 	payerAlias:{
 		type: Sequelize.STRING,
 		field: 'payer_alias'
 	},
 
-	name: { 
+	username: { 
 		type: Sequelize.STRING, 
 		allowNull: false 
 	},

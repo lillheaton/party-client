@@ -2,33 +2,22 @@
 
 ```js
 
-var user = {
-	id, //uuid
-	facebook_id, // application utilize facebook authentication
-	name
-}
-
-var party = {
-	id, // uuid
-	facebook_event_id,
-	name,
-	cost, // int: What the party cost per person.
-	json // Data for the application one party one json document
-}
-
-// Relation table to see how many signed up for what
-var party_signup = {
-	user_id, // ref user
-	party_id // ref party
+var assignment = {
+	id,
+	facebook_user_id,
+	c_ref_assignment_id
 }
 
 var transaction = {
-	id
-	user_id, // ref user
-	party_id, // ref party
-	swish_payment_reference,
-	payer_alias, // string: payer's number
+	id,
+	facebookUserId,
+	partyId, // Contentful party id
+	swishPaymentReference,
+	payerAlias, // string: payer's number
+	username,
+	type,
 	amount,
+	paymentMessage,
 	status,
 	date_paid,
 	error_code, // string: if error, this will be filled

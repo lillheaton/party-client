@@ -6,7 +6,6 @@ const server = require('./server');
 const dbSetup = require('./db/setup');
 const swishConfig = require('./config/swish');
 const log = require('./log')('PartyClient');
-const user = require('./db/models/user');
 
 dbSetup.checkConnection()
 	.then(() => dbSetup.setup())
