@@ -1,6 +1,6 @@
+const log = require('../../log')('PartyClient.TransactionController');
 const Router = require('koa-router');
 const compose = require('koa-compose');
-const log = require('../../log')('PartyClient.TransactionController');
 const { swishPayeeAlias } = require('../../config');
 const swishManager = require('../managers/swishManager');
 

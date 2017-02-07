@@ -20,3 +20,14 @@ git push heroku master
 heroku logs --source app --tail
 # Application log output
 ```
+
+# Requirements
+
+### Config
+In development there needs to be a file called "contentful.js" that will contain the following
+
+```js
+
+module.exports = "<contentful access_token>";
+
+```
