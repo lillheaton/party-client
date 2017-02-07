@@ -10,13 +10,13 @@ module.exports = db.define('transaction', {
 
 	facebookUserId: { 
 		type: Sequelize.STRING,
-		field: "facebook_user_id"
+		field: 'facebook_user_id'
 	},
 
 	// Contentful Party model ID
 	partyId: {
 		type: Sequelize.STRING,
-		field: "c_ref_party_id"
+		field: 'c_ref_party_id'
 	},
 
 	swishPaymentReference: {

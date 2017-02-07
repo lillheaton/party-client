@@ -4,7 +4,7 @@ const transactionController = require('./transactionController');
 
 module.exports.createRoutes = () => {
 	var router = new Router({
-		prefix: "/api"
+		prefix: '/api'
 	});
 
 	router.use('/transaction', transactionController.createRoutes());

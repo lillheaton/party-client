@@ -10,11 +10,11 @@ app.use(koaBodyParser());
 
 if(env.DEVELOPMENT){
 	app.use(async (ctx, next) => {
-	  	const start = new Date();
-	  	await next();
+		const start = new Date();
+		await next();
 
-	  	const ms = new Date() - start;
-	  	console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);	
+		const ms = new Date() - start;
+		log.info(`${ctx.method} ${ctx.url} - ${ms}ms`);	
 	});	
 }
 

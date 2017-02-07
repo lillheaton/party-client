@@ -5,9 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node dist/index.js",
-    "start:dev": "cross-env NODE_ENV=development babel-watch --plugins transform-async-to-generator index.js",
+    "start:dev": "cross-env NODE_ENV=development babel-watch --plugins transform-async-to-generator index.js | bunyan -o short",
     "build": "babel . --out-dir dist --ignore client,node_modules --plugins=transform-async-to-generator --copy-files",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "lint": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
@@ -35,6 +36,8 @@
     "sequelize": "^3.30.0"
   },
   "devDependencies": {
-    "babel-watch": "^2.0.5"
+    "babel-eslint": "^7.1.1",
+    "babel-watch": "^2.0.5",
+    "eslint": "^3.15.0"
   }
 }

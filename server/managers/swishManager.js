@@ -1,3 +1,4 @@
+const log = require('../../log')('PartyClient.SwishManager');
 const request = require('request-promise');
 const swishConfig = require('../../config/swish');
 
@@ -29,7 +30,7 @@ module.exports = {
 		} 
 		catch(error) {
 
-			console.log("Error!!!!");
+			log.error('Error!!!!');
 			return false;
 		}
 	}

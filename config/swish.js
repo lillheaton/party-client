@@ -10,7 +10,7 @@ if(env.PRODUCTION) {
 	blobService = azure.createBlobService();
 }
 
-getBlobFile = (blobFileName, localFileName) => {
+const getBlobFile = (blobFileName, localFileName) => {
 	
 	return new Promise((resolve, reject) => {
 
@@ -25,14 +25,14 @@ getBlobFile = (blobFileName, localFileName) => {
 			'certs', 
 			blobFileName, 
 			fs.createWriteStream(localFileName), 
-			(error, result, response) => {
+			(error) => {
 				if (!error) {
 					resolve(fs.readFileSync(localFileName));
 					return;
 				}
 
 				reject(error);
-		});
+			});
 	});
 
 };
@@ -52,4 +52,4 @@ let self = module.exports = {
 
 		return { cert, ca };
 	}
-}
+};

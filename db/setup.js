@@ -1,3 +1,4 @@
+const log = require('../log')('PartyClient.Router');
 const db = require('./index');
 const { databaseDevMode } = require('../config');
 const assignment = require('./models/assignment');
@@ -13,8 +14,8 @@ module.exports.checkConnection = async () => {
 		await db.authenticate();
 		return true;
 	}
-	catch(error){
-		console.log(error);
-		throw "Could not connect to the SQL server";
+	catch(error) {
+		log.error(error, 'Could not connect to the SQL server');
+		process.exit(1);
 	}
-}
+};

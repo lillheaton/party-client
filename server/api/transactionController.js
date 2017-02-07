@@ -1,6 +1,5 @@
 const log = require('../../log')('PartyClient.TransactionController');
 const Router = require('koa-router');
-const compose = require('koa-compose');
 const { swishPayeeAlias } = require('../../config');
 const swishManager = require('../managers/swishManager');
 
@@ -10,7 +9,7 @@ module.exports.createRoutes = () => {
 	var router = new Router();
 
 
-	router.post('/new', async (ctx, next) => {
+	router.post('/new', async (ctx) => {
 		let json = ctx.request.body;
 		log.info(json);
 
@@ -28,7 +27,7 @@ module.exports.createRoutes = () => {
 			type: json.type,
 			paymentMessage: json.paymentMessage,
 			amount: json.amount,
-			status: "CREATED"
+			status: 'CREATED'
 		});
 
 		// Send the transaction to Swish
@@ -39,15 +38,15 @@ module.exports.createRoutes = () => {
 			payerAlias: json.payerAlias, // Users phone number
 			message: json.paymentMessage,
 			amount: json.amount, // Because the transaction can be more than just for the party, allow to post the cost payment
-			currency: "SEK" // Swish only accepts SEK
+			currency: 'SEK' // Swish only accepts SEK
 		});
 
-		ctx.body = { StatusCode: response.statusCode, Location: (response.statusCode == 201 ? response.headers.location : "") };
+		ctx.body = { StatusCode: response.statusCode, Location: (response.statusCode == 201 ? response.headers.location : '') };
 	});
 
 
 
-	router.post('/callback', async (ctx, next) => {
+	router.post('/callback', async (ctx) => {
 		let json = ctx.request.body;
 		log.info(json);
 
@@ -61,8 +60,8 @@ module.exports.createRoutes = () => {
 			errorMessage: json.errorMessage
 		});
 
-		ctx.body = "OK";
+		ctx.body = 'OK';
 	});
 
 	return router.routes();
-}
+};

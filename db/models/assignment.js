@@ -11,13 +11,13 @@ module.exports = db.define('assignment', {
 	facebookId: { 
 		type: Sequelize.STRING, 
 		allowNull: false,
-		field: "facebook_user_id" 
+		field: 'facebook_user_id' 
 	},
 
     // Contentful assignment id
-    refAssignmentId: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        field: "c_ref_assignment_id"
-    }
+	refAssignmentId: {
+		type: Sequelize.STRING,
+		allowNull: false,
+		field: 'c_ref_assignment_id'
+	}
 });
