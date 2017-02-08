@@ -1,17 +1,18 @@
-const log = require('../../log')('PartyClient.SwishManager');
-const request = require('request-promise');
-const swishConfig = require('../../config/swish');
+import logger from '../../log';
+import request from 'request-promise';
+import { get as getSwishConfig } from '../../config/swish';
 
+const log = logger(__filename);
 const passphrase = 'swish';
 const url = 'https://mss.swicpc.bankgirot.se/swish-cpcapi/api/v1/paymentrequests/';
 const headers = {
 	'Content-Type': 'application/json'
 };
 
-module.exports = {
+export default {
 
 	payment: async (body) => {
-		let { cert, ca } = await swishConfig.get();
+		let { cert, ca } = await getSwishConfig();
 
 		try{
 			let response = await request({
@@ -29,8 +30,7 @@ module.exports = {
 			return Promise.resolve(response);
 		} 
 		catch(error) {
-
-			log.error('Error!!!!');
+			log.error(error);
 			return false;
 		}
 	}

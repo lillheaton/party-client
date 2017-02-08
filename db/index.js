@@ -1,4 +1,7 @@
-const Sequelize = require('sequelize');
-const { databaseConnectionString } = require('../config');
+import Sequelize from 'sequelize';
+import logger from '../log';
+import { databaseConnectionString } from '../config';
 
-module.exports = new Sequelize(databaseConnectionString);
+const log = logger(__filename);
+
+export default new Sequelize(databaseConnectionString, { logging: log.debug.bind(log) });

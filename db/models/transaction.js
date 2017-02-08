@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize');
-const db = require('../index');
+import Sequelize from 'sequelize';
+import db from '../index';
 
-module.exports = db.define('transaction', {
+export default db.define('transaction', {
 	id: { 
 		type: Sequelize.INTEGER, 
 		primaryKey: true, 

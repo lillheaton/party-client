@@ -1,9 +1,10 @@
-const env = require('../config/env');
-const log = require('../log')('PartyClient.Router');
-const Koa = require('koa');
-const koaBodyParser = require('koa-bodyparser');
-const api = require('./api');
+import logger from '../log';
+import env from '../config/env';
+import Koa from 'koa';
+import koaBodyParser from 'koa-bodyparser';
+import api from './api';
 
+const log = logger(__filename);
 const app = new Koa();
 
 app.use(koaBodyParser());
@@ -20,4 +21,4 @@ if(env.DEVELOPMENT){
 
 app.use(api.createRoutes());
 
-module.exports = app;	
+export default app;

@@ -1,12 +1,14 @@
-require('babel-polyfill');
+import 'babel-polyfill';
 
-const config = require('./config');
-const server = require('./server');
-const dbSetup = require('./db/setup');
-const swishConfig = require('./config/swish');
-const log = require('./log')('PartyClient');
+import config from './config';
+import server from './server';
+import dbSetup from './db/setup';
+import { setup as swishSetup } from './config/swish';
+import logger from './log';
+
+const log = logger(__filename);
 
 dbSetup.checkConnection()
 	.then(() => dbSetup.setup())
-	.then(() => swishConfig.setup())
+	.then(() => swishSetup())
 	.then(() => server.listen(config.port, () => log.info({port: config.port}, 'Server started')));

@@ -1,15 +1,17 @@
-const log = require('../log')('PartyClient.Router');
-const db = require('./index');
-const { databaseDevMode } = require('../config');
-const assignment = require('./models/assignment');
-const transaction = require('./models/transaction');
+import logger from '../log';
+import db from './index';
+import { databaseDevMode } from '../config';
+import assignment from './models/assignment';
+import transaction from './models/transaction';
 
-module.exports.setup = async () => {
+const log = logger(__filename);
+
+const setup = async () => {
 	await assignment.sync({force: databaseDevMode});
 	await transaction.sync({force: databaseDevMode});
 };
 
-module.exports.checkConnection = async () => {
+const checkConnection = async () => {
 	try {
 		await db.authenticate();
 		return true;
@@ -19,3 +21,5 @@ module.exports.checkConnection = async () => {
 		process.exit(1);
 	}
 };
+
+export default { setup, checkConnection };

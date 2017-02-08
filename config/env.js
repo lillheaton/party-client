@@ -1,6 +1,6 @@
 const { NODE_ENV } = process.env;
 
-module.exports = {
+export default {
 	DEVELOPMENT: NODE_ENV === 'development',
 	PRODUCTION: NODE_ENV === 'production'
 };

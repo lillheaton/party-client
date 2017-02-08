@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize');
-const db = require('../index');
+import Sequelize from 'sequelize';
+import db from '../index';
 
-module.exports = db.define('assignment', {
+export default db.define('assignment', {
 	id: { 
 		type: Sequelize.UUID, 
 		primaryKey: true, 

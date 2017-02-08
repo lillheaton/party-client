@@ -1,6 +1,6 @@
-const fs = require('fs');
-const env = require('./env');
-const azure = require('azure-storage');
+import fs from 'fs';
+import env from './env';
+import azure from 'azure-storage';
 
 let blobService;
 let cert;
@@ -37,19 +37,19 @@ const getBlobFile = (blobFileName, localFileName) => {
 
 };
 
-let self = module.exports = {
-	setup: async () => {
-		cert = await getBlobFile('Swish Merchant Test Certificate 1231181189.p12', env.DEVELOPMENT === true ? 'dev_swish_cert.p12' : 'swish_cert.p12');
-		ca = await getBlobFile('Test Swish Root CA v1 Test.pem', env.DEVELOPMENT === true ? 'dev_swish_ca.pem' : 'swish_ca.pem');
+const setup = async () => {
+	cert = await getBlobFile('Swish Merchant Test Certificate 1231181189.p12', env.DEVELOPMENT === true ? 'dev_swish_cert.p12' : 'swish_cert.p12');
+	ca = await getBlobFile('Test Swish Root CA v1 Test.pem', env.DEVELOPMENT === true ? 'dev_swish_ca.pem' : 'swish_ca.pem');
 
-		return { cert, ca };
-	},
-
-	get: async () => {
-		if(cert == null || ca == null){
-			return await self.setup();
-		}
-
-		return { cert, ca };
-	}
+	return { cert, ca };
 };
+
+const get = async () => {
+	if(cert == null || ca == null){
+		return await setup();
+	}
+
+	return { cert, ca };
+};
+
+export { setup, get };
