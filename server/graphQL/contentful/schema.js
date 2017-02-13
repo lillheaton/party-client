@@ -14,6 +14,11 @@ type Assignment {
   title: String!
   description: String
   positions: Int
+  assignees: [Assignee]
+}
+
+type Assignee {
+  facebookId: String!
 }
 `;
 
