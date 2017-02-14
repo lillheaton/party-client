@@ -11,7 +11,13 @@ export default {
 			prefix: '/api'
 		});
 
-		router.post('/graphql', graphqlKoa({ schema }));
+		router.post('/graphql', graphqlKoa((ctx) => { 
+			return { 
+				schema: schema,
+				context: { facebookToken: ctx.session.facebookToken }
+			};
+		}));
+
 		router.use('/transaction', transactionController.createRoutes());
 
 		return compose([
