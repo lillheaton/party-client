@@ -3,7 +3,7 @@ const schema = `
 type Party {
   id: String! # the ! means that every author object _must_ have an id
   name: String!
-  facebookId: String
+  facebookEventId: String
   cost: Int
   date: String,
   assignments: [Assignment]

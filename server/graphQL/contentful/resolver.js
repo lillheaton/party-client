@@ -57,7 +57,7 @@ const resolveFunctions = {
 			catch(error) {
 				log.error(error);
 			}
-		}		
+		}
 	},
 
 	Assignment: {

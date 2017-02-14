@@ -13,6 +13,7 @@ type Query {
   party(id: String!): Party
   parties: [Party]
   profile(id: String!): Profile
+  fbEvent(id: String!): FBEvent
 }
 `;
 
