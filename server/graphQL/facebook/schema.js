@@ -14,16 +14,16 @@ type FBEvent {
     start_time: String
     attending_count: String
     interested_count: String
-    attending: [Attendees]
+    attending: [Profile]
+    interested: [Profile]
 }
 
 type Place {
     name: String
 }
 
-type Attendees {
-    id: String
-    name: String
+type EventMutationResp {
+    success: Boolean
 }
 
 `;

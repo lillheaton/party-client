@@ -8,6 +8,14 @@ const FB = {
 		return (await fetch(graphUrl + path, { headers: { Authorization: 'OAuth ' + accessToken } })).json();
 	},
 
+	post: async (path, data) => {
+		return (await fetch(graphUrl + path, { 
+			method: 'POST', 
+			body: data, 
+			headers: { Authorization: 'OAuth ' + accessToken } 
+		})).json();
+	},
+
 	setAccessToken: (val) => {
 		accessToken = val;
 	},

@@ -15,6 +15,10 @@ type Query {
   profile(id: String!): Profile
   fbEvent(id: String!): FBEvent
 }
+
+type Mutation {
+    attendEvent(eventId: String!): EventMutationResp
+}
 `;
 
 export default makeExecutableSchema({
