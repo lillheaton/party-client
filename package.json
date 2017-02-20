@@ -7,8 +7,9 @@
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "start:dev": "cross-env NODE_ENV=development babel-watch --plugins transform-async-to-generator,transform-es2015-modules-commonjs index.js | bunyan -o short",
     "build": "babel . --out-dir dist --ignore client,node_modules --plugins=transform-async-to-generator,transform-es2015-modules-commonjs --copy-files",
-    "postinstall": "npm run build",
-    "lint": "eslint . --fix"
+    "postinstall": "npm run build:client && npm run build",
+    "lint": "eslint . --fix",
+    "build:client": "cd client/ && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +33,7 @@
     "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.0.1",
     "koa-session": "^3.4.0",
+    "koa-static": "^2.1.0",
     "node-fetch": "^1.6.3",
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",

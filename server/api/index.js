@@ -6,23 +6,23 @@ import transactionController from './transactionController';
 import schema from '../graphQL/rootSchema';
 
 export default {
-	createRoutes: () => {
-		var router = new Router({
-			prefix: '/api'
-		});
+    createRoutes: () => {
+        var router = new Router({
+            prefix: '/api'
+        });
 
-		router.post('/graphql', graphqlKoa((ctx) => { 
-			return { 
-				schema: schema,
-				context: { facebookToken: ctx.session.facebookToken }
-			};
-		}));
+        router.post('/graphql', graphqlKoa((ctx) => { 
+            return { 
+                schema: schema,
+                context: { facebookToken: ctx.session.facebookToken }
+            };
+        }));
 
-		router.use('/transaction', transactionController.createRoutes());
+        router.use('/transaction', transactionController.createRoutes());
 
-		return compose([
-			router.routes(),
-			router.allowedMethods()
-		]);
-	}
+        return compose([
+            router.routes(),
+            router.allowedMethods()
+        ]);
+    }
 };

@@ -10,8 +10,7 @@ module.exports = {
     "parser": "babel-eslint",
     "rules": {
         "indent": [
-            "error",
-            "tab"
+            "error", 4
         ],
         "linebreak-style": [
             "error",

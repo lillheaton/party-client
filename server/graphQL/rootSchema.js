@@ -22,6 +22,6 @@ type Mutation {
 `;
 
 export default makeExecutableSchema({
-	typeDefs: [schema, contentfulScheme, facebookScheme],
-	resolvers: merge(facebookResolver, contentfulResolver)
+    typeDefs: [schema, contentfulScheme, facebookScheme],
+    resolvers: merge(facebookResolver, contentfulResolver)
 });
