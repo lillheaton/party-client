@@ -1,5 +1,5 @@
 
-const initialState = { foo: "bar", count: 0 };
+const initialState = { foo: 'bar', count: 0 };
 
 // Action creator
 export const incrementCounter = () => {
