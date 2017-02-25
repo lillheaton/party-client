@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { graphql, compose  } from 'react-apollo';
 import qql from 'graphql-tag';
 
